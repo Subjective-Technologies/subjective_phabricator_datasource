@@ -74,16 +74,15 @@ class SubjectivePhabricatorDataSource(SubjectiveDataSource):
 
     # ------------------------------------------------------------------
     def get_icon(self):
-        """Return the SVG code for the Phabricator icon."""
-        return """
-<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="#000000">
-  <circle cx="512" cy="512" r="512" style="fill: rgb(74, 95, 136);" />
-  <path d="M604.6 519.5l-.1-16s26.8-24.4 26-26.2l-11.7-24.7c-.7-1.7-36.4-.6-36.4-.6l-11.6-11.5s.2-35.2-1.5-35.9l-24.8-11.4
-           c-1.7-.7-25.5 25.9-25.5 25.9l-16.2-.2s-25.3-26.4-27-25.7L451 403.5c-1.7.6.2 35.7.2 35.7l-11.2 10.3s-36 1.1-36.7-.6l-10-24.4
-           c-.7-1.7 25.9 25.9 25.9 25.9l.1 15.9s-26.8 24.4-26 26.2L405 568c.7 1.7 36.4.6 36.4.6l11.6 11.5s-.2 39.2 1.5 39.9l24.8 10.2
-           c1.7.7 25.5-29 25.5-29l16.2.2s25.3 29.4 26.9 28.8l24.7-9.3c1.7-.7-.2-39.6-.2-39.6z" fill="#fff"/>
-</svg>
-        """
+        """Return SVG icon content, preferring a local icon.svg in the plugin folder."""
+        icon_path = os.path.join(os.path.dirname(__file__), 'icon.svg')
+        try:
+            if os.path.exists(icon_path):
+                with open(icon_path, 'r', encoding='utf-8') as f:
+                    return f.read()
+        except Exception:
+            pass
+        return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#4a5f88"/><path fill="#fff" d="M11 7h2v10h-2z"/></svg>'
 
     def get_connection_data(self):
         """
