@@ -1,4 +1,5 @@
 {
+  "description": "Connects to Phabricator APIs, retrieves repository metadata, and syncs source artifacts into a local target directory.",
   "domainCategory": "Software Development",
   "subjectiveTechnologyElement": "DataSources",
   "publisher": "BrainBoost Ltd.",
@@ -9,7 +10,7 @@
     {
       "type": "splitList",
       "title": "Phabricator",
-      "text": "A Subjective data source for phabricator.",
+      "text": "Connects to Phabricator APIs, retrieves repository metadata, and syncs source artifacts into a local target directory.",
       "image": {
         "src": "/subjective_phabricator_datasource/icon.svg",
         "alt": "Phabricator icon"
